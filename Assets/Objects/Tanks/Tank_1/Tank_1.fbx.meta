@@ -3,7 +3,17 @@ guid: 8f680e6882ab81c41bcec377c25cd7fe
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rail_material
+    second: {fileID: 2100000, guid: 04e1045b89ec77d4e8f2989ef97e3658, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tank_Material
+    second: {fileID: 2100000, guid: 5dcaf6c91182bcc459a741fd6bd942da, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

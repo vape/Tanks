@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Tanks.Game
+namespace Tanks.Game.Tank
 {
     public class TankController : MonoBehaviour
     {
+        public Vector2 CurrentSpeed => currentMove * speed;
+
         [SerializeField]
         private Rigidbody body;
 
