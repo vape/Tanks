@@ -14,7 +14,7 @@ namespace Tanks.Game
 
         private Vector3 velocity;
 
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             if (player != null)
             {
