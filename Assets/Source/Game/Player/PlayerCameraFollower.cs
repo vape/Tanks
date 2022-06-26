@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
 
-namespace Tanks.Game
+namespace Tanks.Game.Player
 {
     [RequireComponent(typeof(Camera))]
     public class PlayerCameraFollower : MonoBehaviour
     {
+        public GameObject Player
+        {
+            get
+            {
+                return player;
+            }
+            set
+            {
+                player = value;
+            }
+        }
+
         [SerializeField]
         private GameObject player;
         [SerializeField]

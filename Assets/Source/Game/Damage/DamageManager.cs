@@ -90,10 +90,10 @@ namespace Tanks.Game.Damage
                 return false;
             }
 
-#if DEBUG
-            var sourceName = info.Source == null ? "something" : info.Source.name;
-            Debug.Log($"{sourceName} is damaging {GenerateEntityDescription(entity)} for {damage} hit points");
-#endif
+//#if DEBUG
+//            var sourceName = info.Source == null ? "something" : info.Source.name;
+//            Debug.Log($"{sourceName} is damaging {GenerateEntityDescription(entity)} for {damage} hit points");
+//#endif
 
             entity.Damage(damage, info);
             return true;

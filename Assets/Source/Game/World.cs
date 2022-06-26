@@ -1,4 +1,5 @@
-﻿using Tanks.Game.Damage;
+﻿using Tanks.Game.AI;
+using Tanks.Game.Damage;
 using UnityEngine;
 
 namespace Tanks.Game
@@ -13,12 +14,12 @@ namespace Tanks.Game
             }
         }
 
-        public static EntitiesManager Entities
-        { get; private set; } = new EntitiesManager();
         public static ProjectileManager Projectiles
         { get; private set; } = new ProjectileManager();
         public static DamageManager Damage
         { get; private set; } = new DamageManager();
+        public static EnemyManager Enemies
+        { get; private set; } = new EnemyManager();
 
         [RuntimeInitializeOnLoadMethod]
         private static void Initialize()

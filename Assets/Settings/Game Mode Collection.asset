@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f565cc830614f8e7696c148de477, type: 3}
+  m_Name: Game Mode Collection
+  m_EditorClassIdentifier: 
+  Modes:
+  - {fileID: 11400000, guid: a2e6173bee212aa47a6e0f49872f6acf, type: 2}

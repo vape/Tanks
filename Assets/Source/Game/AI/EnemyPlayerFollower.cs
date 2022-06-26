@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Tanks.Game.Player;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Tanks.Game.AI
@@ -12,9 +13,9 @@ namespace Tanks.Game.AI
 
         private void Update()
         {
-            if (World.Entities.Player != null)
+            if (PlayerManager.PlayerInstance != null)
             {
-                navMeshAgent.destination = World.Entities.Player.transform.position;
+                navMeshAgent.destination = PlayerManager.PlayerInstance.transform.position;
             }
         }
 

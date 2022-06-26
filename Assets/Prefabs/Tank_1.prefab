@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 3410567479362423316}
   - component: {fileID: 5041090396471944960}
   - component: {fileID: 2238096417293431642}
+  - component: {fileID: 4361419382624169221}
   m_Layer: 6
   m_Name: Tank_1
   m_TagString: Untagged
@@ -268,8 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 3410567479362423274}
-  speed: 7
-  angularSpeed: 125
+  speed: 12
+  angularSpeed: 180
   rotationSmoothTime: 0.15
   accelerationSmoothTime: 0.25
 --- !u!114 &5041090396471944960
@@ -308,8 +309,8 @@ MonoBehaviour:
   Death:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Tanks.Game.PlayerController, Tanks
+      - m_Target: {fileID: 4361419382624169221}
+        m_TargetAssemblyTypeName: Tanks.Game.Player.PlayerController, Tanks
         m_MethodName: OnDeath
         m_Mode: 1
         m_Arguments:
@@ -321,6 +322,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   health: 50
+  healthCapacity: 50
+--- !u!114 &4361419382624169221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410567479362423318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77d1f6bf43788746b48d9786c68161b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4455782718233495200
 GameObject:
   m_ObjectHideFlags: 0
