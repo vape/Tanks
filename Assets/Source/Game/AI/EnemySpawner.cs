@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Tanks.Game.AI
 {
@@ -8,14 +6,8 @@ namespace Tanks.Game.AI
     {
         public int Id => GetInstanceID();
 
-        [Serializable]
-        public struct EnemyPreset
-        {
-            public EnemyController Controller;
-        }
-
         [SerializeField]
-        private EnemyPreset[] presets;
+        private EnemySpawnerConfiguration config;
         [SerializeField]
         private Transform pivot;
 
@@ -31,10 +23,10 @@ namespace Tanks.Game.AI
 
         public void Spawn()
         {
-            var index = UnityEngine.Random.Range(0, presets.Length);
-            var preset = presets[index];
+            var index = Random.Range(0, config.Presets.Length);
+            var preset = config.Presets[index];
 
-            var enemy = PrefabPool.Instantiate(preset.Controller);
+            var enemy = PrefabPool.Instantiate(preset.Prefab);
             enemy.transform.position = pivot.transform.position;
         }
     }

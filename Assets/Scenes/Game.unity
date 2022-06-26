@@ -152,9 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3977b10df00b22c4fb7d1eca4a7b59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presets:
-  - Controller: {fileID: 5529691879665883213, guid: 678c0987794f1384aac8333f908eca84,
-      type: 3}
+  config: {fileID: 11400000, guid: a7d614143603d7a4dbb30798a4fd0fe1, type: 2}
   pivot: {fileID: 1727596}
 --- !u!4 &1727596
 Transform:
@@ -287,9 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3977b10df00b22c4fb7d1eca4a7b59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presets:
-  - Controller: {fileID: 5529691879665883213, guid: 678c0987794f1384aac8333f908eca84,
-      type: 3}
+  config: {fileID: 11400000, guid: a7d614143603d7a4dbb30798a4fd0fe1, type: 2}
   pivot: {fileID: 191453143}
 --- !u!4 &191453143
 Transform:
@@ -725,9 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3977b10df00b22c4fb7d1eca4a7b59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presets:
-  - Controller: {fileID: 5529691879665883213, guid: 678c0987794f1384aac8333f908eca84,
-      type: 3}
+  config: {fileID: 11400000, guid: a7d614143603d7a4dbb30798a4fd0fe1, type: 2}
   pivot: {fileID: 1271856825}
 --- !u!4 &1271856825
 Transform:
@@ -938,9 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3977b10df00b22c4fb7d1eca4a7b59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presets:
-  - Controller: {fileID: 5529691879665883213, guid: 678c0987794f1384aac8333f908eca84,
-      type: 3}
+  config: {fileID: 11400000, guid: a7d614143603d7a4dbb30798a4fd0fe1, type: 2}
   pivot: {fileID: 1678815404}
 --- !u!4 &1678815404
 Transform:
