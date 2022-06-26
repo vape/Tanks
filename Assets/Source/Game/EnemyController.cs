@@ -12,10 +12,15 @@ namespace Tanks.Game
 
         private void Update()
         {
-            if (WorldEntitiesManager.Instance.Player != null)
+            if (World.Entities.Player != null)
             {
-                navMeshAgent.destination = WorldEntitiesManager.Instance.Player.transform.position;
+                navMeshAgent.destination = World.Entities.Player.transform.position;
             }
+        }
+
+        public void OnDeath()
+        {
+            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)

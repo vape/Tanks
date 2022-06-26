@@ -6,12 +6,13 @@ namespace Tanks.Game
     {
         private void OnEnable()
         {
-            WorldEntitiesManager.Instance.RegisterPlayer(this);
+            World.Entities.Register(this);
+            
         }
 
         private void OnDisable()
         {
-            WorldEntitiesManager.Instance.UnregisterPlayer(this);
+            World.Entities.Unregister(this);
         }
     }
 }

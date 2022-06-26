@@ -14,6 +14,7 @@ namespace Tanks.Game.Tank
         private float wheelRotationSpeed = 1f;
         [SerializeField]
         private float trackRotationSpeed = 1f;
+
         private float time;
 
         private void Update()
