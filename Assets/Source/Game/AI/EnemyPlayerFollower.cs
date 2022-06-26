@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Tanks.Game
+namespace Tanks.Game.AI
 {
-    public class EnemyController : MonoBehaviour
+    public class EnemyPlayerFollower : MonoBehaviour
     {
         public const string DamageAreaTag = "DamageArea";
 
@@ -16,11 +16,6 @@ namespace Tanks.Game
             {
                 navMeshAgent.destination = World.Entities.Player.transform.position;
             }
-        }
-
-        public void OnDeath()
-        {
-            Destroy(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)

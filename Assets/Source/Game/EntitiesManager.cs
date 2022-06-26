@@ -2,6 +2,7 @@
 
 namespace Tanks.Game
 {
+    // TODO: rename to player locator?
     public class EntitiesManager
     {
         public delegate void PlayerEventDelegate(PlayerController controller);

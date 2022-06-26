@@ -14,5 +14,10 @@ namespace Tanks.Game
         {
             World.Entities.Unregister(this);
         }
+
+        public void OnDeath()
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824bb638c011b0440893f02444a0df9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Collided:
+  Triggered:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7881119070226563771}
