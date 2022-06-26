@@ -14,6 +14,8 @@ namespace Tanks.Game.Tank.Guns
         private float projectileSpeed;
         [SerializeField]
         private float projectileRange;
+        [SerializeField]
+        private float spreadRange;
 
         public override float GetPhaseDuration(GunPhase phase)
         {
@@ -48,7 +50,10 @@ namespace Tanks.Game.Tank.Guns
                 return false;
             }
 
-            projectiles.Create(projectile, muzzle.position, muzzle.forward, projectileSpeed, projectileRange / projectileSpeed);
+            var spread = new Vector3(Random.Range(0f, spreadRange), Random.Range(0, spreadRange), Random.Range(0, spreadRange));
+            var direction = Quaternion.Euler(spread) * muzzle.forward;
+
+            projectiles.Create(projectile, muzzle.position, direction, projectileSpeed, projectileRange / projectileSpeed);
             SetPhase(GunPhase.Reload);
 
             return true;

@@ -95,6 +95,7 @@ MonoBehaviour:
   reloadTime: 1
   projectileSpeed: 30
   projectileRange: 60
+  spreadRange: 1
 --- !u!1 &3410567478825984897
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,9 +548,10 @@ MonoBehaviour:
   projectile: {fileID: 7881119070226563771, guid: 23c0d8a8966242f408ba013fcec7bf97,
     type: 3}
   muzzle: {fileID: 809293985006289544}
-  reloadTime: 0.05
+  reloadTime: 0.25
   projectileSpeed: 15
   projectileRange: 15
+  spreadRange: 5
 --- !u!1001 &3410567477924003473
 PrefabInstance:
   m_ObjectHideFlags: 0
