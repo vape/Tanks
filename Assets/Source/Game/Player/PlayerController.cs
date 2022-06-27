@@ -8,8 +8,13 @@ namespace Tanks.Game.Player
 
         public event DeathDelegate Death;
 
+        public float MeleeRange => meleeRange;
+
         public bool Dead
         { get; private set; }
+
+        [SerializeField]
+        private float meleeRange;
 
         public void OnDeath()
         {

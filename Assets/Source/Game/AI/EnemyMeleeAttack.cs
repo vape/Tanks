@@ -1,10 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tanks.Game.AI
 {
     public class EnemyMeleeAttack : MonoBehaviour
     {
+        public const string DamageAreaTag = "DamageArea";
+
         public enum AttackPhase
         {
             Idle,
@@ -22,7 +25,7 @@ namespace Tanks.Game.AI
             public float ReloadTime;
         }
 
-        public const string DamageAreaTag = "DamageArea";
+        public UnityEvent<float> Attack;
 
         public AttackPhase Phase => phase;
         public AttackDescriptor ActiveAttack => attacks[attackIndex];
@@ -35,6 +38,7 @@ namespace Tanks.Game.AI
         private AttackPhase phase;
         private bool atMeleeRange;
         private GameObject target;
+        private int enters;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -56,6 +60,11 @@ namespace Tanks.Game.AI
 
         private void Update()
         {
+            if (atMeleeRange && target == null)
+            {
+                atMeleeRange = false;
+            }
+
             elapsedPhase += Time.deltaTime;
 
             switch (phase)
@@ -100,6 +109,13 @@ namespace Tanks.Game.AI
         {
             this.phase = phase;
             this.elapsedPhase = 0;
+
+            switch (phase)
+            {
+                case AttackPhase.Performing:
+                    Attack?.Invoke(ActiveAttack.AttackTime);
+                    break;
+            }
         }
 
         private void ApplyDamage()

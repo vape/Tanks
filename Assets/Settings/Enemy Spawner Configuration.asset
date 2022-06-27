@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Enemy Spawner Configuration
   m_EditorClassIdentifier: 
   Presets:
-  - Prefab: {fileID: 5529691879665883213, guid: 678c0987794f1384aac8333f908eca84,
+  - Prefab: {fileID: 5529691879665883213, guid: 2c67145f5423a2741bbb50b69d442a5a,
+      type: 3}
+  - Prefab: {fileID: 5529691879665883213, guid: 7cdb29b6f109bfd42ba3b4fdb0379013,
       type: 3}

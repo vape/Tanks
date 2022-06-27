@@ -14,12 +14,19 @@ namespace Tanks.UI.Controls
         private new Camera camera;
         private IDamagableGameObject damagable;
         private Vector3 offset;
+        private HealthBarHelper helper;
 
         public void SetTarget(Camera camera, IDamagableGameObject damagable)
         {
             this.camera = camera;
             this.damagable = damagable;
-            this.offset = new Vector3(0, 2.5f, 0);
+
+            helper = damagable.GameObject.GetComponent<HealthBarHelper>();
+
+            if (helper == null)
+            {
+                offset = new Vector3(0, 2.5f, 0);
+            }
         }
 
         private void LateUpdate()
@@ -37,7 +44,7 @@ namespace Tanks.UI.Controls
                         transform.rotation = camera.transform.rotation;
                     }
                     
-                    transform.position = damagable.GameObject.transform.position + offset;
+                    transform.position = helper == null ? damagable.GameObject.transform.position + offset : helper.PositionReference.transform.position;
                 }
             }
         }

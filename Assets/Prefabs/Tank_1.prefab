@@ -43,7 +43,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.3
+  m_Radius: 2.5
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3404646057277480610
 GameObject:
@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 5041090396471944960}
   - component: {fileID: 2238096417293431642}
   - component: {fileID: 4361419382624169221}
+  - component: {fileID: 223110113427153172}
   m_Layer: 6
   m_Name: Tank_1
   m_TagString: Untagged
@@ -179,6 +180,7 @@ Transform:
   - {fileID: 3410567478825984902}
   - {fileID: 8409052595597993216}
   - {fileID: 2715769468750395846}
+  - {fileID: 5848177871888368226}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -322,8 +324,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  health: 50
-  healthCapacity: 50
+  health: 100
+  healthCapacity: 100
   protection: 0.25
 --- !u!114 &4361419382624169221
 MonoBehaviour:
@@ -337,6 +339,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77d1f6bf43788746b48d9786c68161b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeRange: 0
+--- !u!114 &223110113427153172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3410567479362423318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9168a14418551746b334d96bdb5858e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositionReference: {fileID: 5848177871888368226}
 --- !u!1 &4455782718233495200
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +569,37 @@ MonoBehaviour:
   projectileSpeed: 15
   projectileRange: 15
   spreadRange: 5
+--- !u!1 &8388421680441909082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5848177871888368226}
+  m_Layer: 6
+  m_Name: Health Bar Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5848177871888368226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388421680441909082}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.183, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3410567479362423319}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3410567477924003473
 PrefabInstance:
   m_ObjectHideFlags: 0
