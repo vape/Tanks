@@ -13,6 +13,13 @@ namespace Tanks.UI.Transition
         private float showDuration;
         [SerializeField]
         private float hideDuration;
+        [SerializeField]
+        private Camera cam;
+
+        public void ToggleTransitionCamera(bool enabled)
+        {
+            cam.gameObject.SetActive(enabled);
+        }
 
         public async Task ShowAsync()
         {

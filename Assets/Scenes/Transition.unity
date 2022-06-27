@@ -448,6 +448,7 @@ MonoBehaviour:
   animator: {fileID: 1430898725}
   showDuration: 0.25
   hideDuration: 0.25
+  cam: {fileID: 754540293}
 --- !u!225 &1430898727
 CanvasGroup:
   m_ObjectHideFlags: 0

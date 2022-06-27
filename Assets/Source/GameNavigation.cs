@@ -88,8 +88,10 @@ namespace Tanks
 
             var transition = await TransitionService.CreateTransition();
 
+            transition.ToggleTransitionCamera(false);
             await transition.ShowAsync();
-
+            transition.ToggleTransitionCamera(true);
+            
             if (SceneManager.GetSceneByName(MainGameSceneName).isLoaded)
             {
                 var gameScene = SceneManager.GetSceneByName(MainGameSceneName);
