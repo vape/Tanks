@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Tanks.Assets.Source.Game;
 using Tanks.Game.Level;
 using Tanks.Game.Mode.Modes;
 using Tanks.UI.Controls;
@@ -15,6 +16,8 @@ namespace Tanks.UI
         private ArenaMenuVariant arenaTemplate;
         [SerializeField]
         private Transform arenaVariantsContainer;
+        [SerializeField]
+        private GameSettings gameSettings;
 
         private List<ArenaMenuVariant> arenaViews = new List<ArenaMenuVariant>();
 
@@ -62,7 +65,7 @@ namespace Tanks.UI
                 var manifest = new LevelManifest()
                 {
                     Arena = selectedArena.Preset.Data,
-                    GameMode = ScriptableObject.CreateInstance<EndlessGameModeConfiguration>()
+                    GameMode = gameSettings.Modes[0]
                 };
 
                 GameNavigation.LoadGame(manifest);

@@ -8,6 +8,8 @@ namespace Tanks.Game.Tank
     {
         [SerializeField]
         private TankGun[] guns;
+        [SerializeField]
+        private Animator animator;
 
         private int activeGun;
         private bool isFiring;
@@ -22,12 +24,33 @@ namespace Tanks.Game.Tank
 
         public void OnNextWeapon(InputAction.CallbackContext context)
         {
-            activeGun = (activeGun + 1) % guns.Length;
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    SetActiveGun((activeGun + 1) % guns.Length);
+                    break;
+            }
         }
 
         public void OnPrevWeapon(InputAction.CallbackContext context)
         {
-            activeGun = activeGun == 0 ? guns.Length - 1 : activeGun - 1 % guns.Length;
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    SetActiveGun(activeGun == 0 ? guns.Length - 1 : activeGun - 1 % guns.Length);
+                    break;
+            }
+        }
+
+        private void SetActiveGun(int gun)
+        {
+            activeGun = gun;
+
+            if (animator != null)
+            {
+                animator.SetInteger("gun", gun);
+                animator.SetTrigger("switch_gun");
+            }
         }
 
         public void OnFire(InputAction.CallbackContext context)

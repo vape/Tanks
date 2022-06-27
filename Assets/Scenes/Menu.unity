@@ -804,6 +804,7 @@ MonoBehaviour:
   arenaTemplate: {fileID: 1001809968605807810, guid: be86055aced4fd94bad12cae29c77246,
     type: 3}
   arenaVariantsContainer: {fileID: 1398178144}
+  gameSettings: {fileID: 11400000, guid: dd07df3917e9695499713df7d60e52f5, type: 2}
 --- !u!1 &1756703967
 GameObject:
   m_ObjectHideFlags: 0
