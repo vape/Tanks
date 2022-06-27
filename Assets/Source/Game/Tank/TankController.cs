@@ -5,10 +5,12 @@ namespace Tanks.Game.Tank
 {
     public class TankController : MonoBehaviour
     {
+        private static readonly Vector3 gravity = new Vector3(0, -9.81f, 0);
+
         public Vector2 CurrentSpeed => currentMove * speed;
 
         [SerializeField]
-        private Rigidbody body;
+        private CharacterController character;
 
         [SerializeField]
         private float speed;
@@ -33,11 +35,11 @@ namespace Tanks.Game.Tank
             currentMove.y = Mathf.SmoothDamp(currentMove.y, moveTarget.y, ref moveChangingVelocity.y, accelerationSmoothTime);
             currentMove.x = Mathf.SmoothDamp(currentMove.x, moveTarget.x, ref moveChangingVelocity.x, rotationSmoothTime);
 
-            var move = transform.forward * currentMove.y * Time.fixedDeltaTime * speed;
+            var move = transform.forward * currentMove.y * Time.fixedDeltaTime * speed + gravity;
             var rotation = Quaternion.Euler(0, currentMove.x * angularSpeed * Time.fixedDeltaTime, 0);
-
-            body.MovePosition(transform.position + move);
-            body.MoveRotation(transform.rotation * rotation);
+            
+            transform.rotation *= rotation;
+            character.Move(move);
         }
     }
 }
