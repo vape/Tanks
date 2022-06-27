@@ -1,8 +1,13 @@
-﻿namespace Tanks.Game.Mode
+﻿using System;
+
+namespace Tanks.Game.Mode
 {
     public abstract class GameMode
     {
         public virtual void Update(float delta)
+        { }
+
+        public void Unload()
         { }
     }
 

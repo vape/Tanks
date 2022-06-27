@@ -38,7 +38,6 @@ namespace Tanks.Game.AI
         private AttackPhase phase;
         private bool atMeleeRange;
         private GameObject target;
-        private int enters;
 
         private void OnTriggerEnter(Collider other)
         {

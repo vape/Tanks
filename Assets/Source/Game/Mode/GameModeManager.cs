@@ -7,14 +7,22 @@ namespace Tanks.Game.Mode
     {
         [SerializeField]
         private PlayerManager playerManager;
-        [SerializeField]
-        private GameModeCollection gameModes;
 
         private GameMode mode;
 
-        private void Awake()
+        public void Load(GameModeConfiguration config)
         {
-            mode = gameModes.Modes[0].CreateGameModeBase(CreateContext());
+            mode = config.CreateGameModeBase(CreateContext());
+        }
+
+        public void Unload()
+        {
+            if (mode == null)
+            {
+                return;
+            }
+
+            mode = null;
         }
 
         private void Update()

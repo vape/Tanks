@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Tanks.Game.Arena;
 using UnityEngine;
 
 namespace Tanks.Game.Player
@@ -16,10 +18,9 @@ namespace Tanks.Game.Player
         [SerializeField]
         private PlayerManagerConfiguration config;
         [SerializeField]
-        private PlayerSpawner spawner;
-        [SerializeField]
         private PlayerCameraFollower cameraFollower;
 
+        private ArenaController arena;
         private PlayerManagerConfiguration.PlayerPreset lastPreset;
 
         private void Awake()
@@ -30,11 +31,35 @@ namespace Tanks.Game.Player
             }
 
             Instance = this;
+
+            ArenaController.RegisterLoadingCallback(ArenaLoadedHandler);
         }
 
         private void OnDestroy()
         {
+            ArenaController.UnregisterLoadingCallback(ArenaLoadedHandler);
+            ArenaController.UnregisterUnloadingCallback(ArenaLoadedHandler);
+
             Instance = null;
+        }
+
+        private void ArenaLoadedHandler(ArenaController arena)
+        {
+            this.arena = arena;
+
+            ArenaController.RegisterUnloadingCallback(ArenaUnloadedHandler);
+        }
+
+        private void ArenaUnloadedHandler(ArenaController arena)
+        {
+            this.arena = null;
+
+            ArenaController.RegisterLoadingCallback(ArenaLoadedHandler);
+        }
+
+        public bool CanSpawn()
+        {
+            return arena != null;
         }
 
         public void Spawn(string presetName)
@@ -50,7 +75,7 @@ namespace Tanks.Game.Player
             }
 
             lastPreset = preset;
-            Player = spawner.Spawn(preset.Prefab);
+            Player = arena.Spawner.Spawn(preset.Prefab);
             cameraFollower.Player = Player.gameObject;
         }
 

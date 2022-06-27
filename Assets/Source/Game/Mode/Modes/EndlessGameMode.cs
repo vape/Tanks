@@ -10,21 +10,23 @@
         {
             base.Update(delta);
 
-            if (context.PlayerManager.Player == null)
+            if (context.PlayerManager.Player == null && context.PlayerManager.CanSpawn())
             {
                 context.PlayerManager.Spawn("default");
             }
 
-            if (World.Enemies.Spawners.Count > 0 && World.Enemies.Enemies.Count < config.MaxEnemies)
+            if (context.PlayerManager.Player != null)
             {
-                var spawner = UnityEngine.Random.Range(0, World.Enemies.Spawners.Count);
-                World.Enemies.Spawners[spawner].Spawn();
-            }
+                if (World.Enemies.Spawners.Count > 0 && World.Enemies.Enemies.Count < config.MaxEnemies)
+                {
+                    var spawner = UnityEngine.Random.Range(0, World.Enemies.Spawners.Count);
+                    World.Enemies.Spawners[spawner].Spawn();
+                }
 
-            if (context.PlayerManager.Player != null &&
-                context.PlayerManager.Player.Dead)
-            {
-                context.PlayerManager.Respawn();
+                if (context.PlayerManager.Player.Dead)
+                {
+                    context.PlayerManager.Respawn();
+                }
             }
         }
     }

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 01103886f491a4549b34f6b028f2728b
+    path: Assets/Scenes/Main.unity
+    guid: 0f6dfe2908cfdb848b0a8de0612ddf9c
+  - enabled: 1
+    path: Assets/Scenes/Arenas/Arena_01_Test_Grass.unity
+    guid: 160eacad1689d71449c78ca0e0edccf7
+  - enabled: 1
+    path: Assets/Scenes/Arenas/Arena_02_Test_Desert.unity
+    guid: f238845ac48c34f41ab30b0385bc9e1d
   m_configObjects: {}
