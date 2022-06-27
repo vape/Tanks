@@ -4,13 +4,16 @@
     {
         int Id
         { get; }
+        float Protection
+        { get; }
         float HealthCapacity
         { get; }
         float Health
-        { get; }
+        { get; set; }
         bool IsDead
-        { get; }
+        { get; set; }
 
-        void Damage(float value, DamageInfo info);
+        void OnDamage(float value, DamageInfo info);
+        void OnDeath(DamageInfo info);
     }
 }

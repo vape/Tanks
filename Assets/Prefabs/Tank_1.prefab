@@ -324,6 +324,7 @@ MonoBehaviour:
         m_CallState: 2
   health: 50
   healthCapacity: 50
+  protection: 0.25
 --- !u!114 &4361419382624169221
 MonoBehaviour:
   m_ObjectHideFlags: 0

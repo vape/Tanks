@@ -204,6 +204,7 @@ MonoBehaviour:
       m_Calls: []
   health: 10
   healthCapacity: 10
+  protection: 0.1
 --- !u!114 &5529691879665883213
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,22 +10,46 @@ namespace Tanks.Game.AI
         public UnityEvent<DamageInfo, float> HealthChanged;
 
         public int Id => GetInstanceID();
+        public float Protection => protection;
         public float HealthCapacity => healthCapacity;
-        public float Health => health;
-        public bool IsDead => dead;
         public GameObject GameObject => this == null ? null : gameObject;
+
+        public float Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+            }
+        }
+        public bool IsDead
+        {
+            get
+            {
+                return dead;
+            }
+            set
+            {
+                dead = value;
+            }
+        }
 
         [SerializeField]
         private float health;
         [SerializeField]
         private float healthCapacity;
+        [SerializeField]
+        [Range(0, 1)]
+        private float protection;
 
         private bool dead;
 
         private void OnEnable()
         {
             World.Damage.Register(this);
-            OnHealthChanged(0, default);
         }
 
         private void OnDisable()
@@ -33,35 +57,14 @@ namespace Tanks.Game.AI
             World.Damage.Unregister(this);
         }
 
-        public void Damage(float value, DamageInfo info)
+        public void OnDamage(float value, DamageInfo info)
         {
-            if (dead)
-            {
-                return;
-            }
-
-            var delta = Mathf.Clamp(value, 0, health);
-            health -= delta;
-
-            OnHealthChanged(-delta, info);
+            HealthChanged?.Invoke(info, value);
         }
 
-        private void OnHealthChanged(float delta, DamageInfo info)
+        public void OnDeath(DamageInfo info)
         {
-            if (!dead && health <= 0)
-            {
-                dead = true;
-                Death?.Invoke();
-            }
-            else if (dead && health > 0)
-            {
-                dead = false;
-            }
-
-            if (delta != 0)
-            {
-                HealthChanged?.Invoke(info, delta);
-            }
+            Death?.Invoke();
         }
     }
 }

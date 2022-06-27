@@ -41,6 +41,8 @@ namespace Tanks.Game.Damage
 
             damagableEntities.Add(id, entity);
             EntityRegistered?.Invoke(entity);
+
+            UpdateEntityState(entity);
         }
 
         public void Unregsiter(GameObject gameObject)
@@ -90,13 +92,27 @@ namespace Tanks.Game.Damage
                 return false;
             }
 
+            var delta = Mathf.Min(entity.Health, damage * (1f - Mathf.Clamp01(entity.Protection)));
+            entity.Health -= delta;
+            entity.OnDamage(delta, info);
+
+            UpdateEntityState(entity, info);
+
 //#if DEBUG
 //            var sourceName = info.Source == null ? "something" : info.Source.name;
-//            Debug.Log($"{sourceName} is damaging {GenerateEntityDescription(entity)} for {damage} hit points");
+//            Debug.Log($"{sourceName} is damaged {GenerateEntityDescription(entity)} for {delta} hit points");
 //#endif
 
-            entity.Damage(damage, info);
             return true;
+        }
+
+        private void UpdateEntityState(IDamagableEntity entity, DamageInfo info = default)
+        {
+            if (entity.Health == 0)
+            {
+                entity.IsDead = true;
+                entity.OnDeath(info);
+            }
         }
 
         private string GenerateEntityDescription(IDamagableEntity entity)

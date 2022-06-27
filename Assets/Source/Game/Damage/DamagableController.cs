@@ -8,22 +8,47 @@ namespace Tanks.Game.Damage
         public UnityEvent Death;
 
         public int Id => GetInstanceID();
+        public float Protection => protection;
         public float HealthCapacity => healthCapacity;
-        public float Health => health;
-        public bool IsDead => dead;
         public GameObject GameObject => this == null ? null : gameObject;
+
+        public float Health
+        {
+            get
+            {
+                return health;
+            }
+            set
+            {
+                health = value;
+            }
+        }
+
+        public bool IsDead
+        {
+            get
+            {
+                return dead;
+            }
+            set
+            {
+                dead = value;
+            }
+        }
 
         [SerializeField]
         private float health;
         [SerializeField]
         private float healthCapacity;
+        [SerializeField]
+        [Range(0, 1)]
+        private float protection;
 
         private bool dead;
 
         private void OnEnable()
         {
             World.Damage.Register(this);
-            OnHealthChanged();
         }
 
         private void OnDisable()
@@ -31,23 +56,12 @@ namespace Tanks.Game.Damage
             World.Damage.Unregister(this);
         }
 
-        public void Damage(float value, DamageInfo info)
-        {
-            health = Mathf.Max(0, health - value);
-            OnHealthChanged();
-        }
+        public void OnDamage(float value, DamageInfo info)
+        { }
 
-        private void OnHealthChanged()
+        public void OnDeath(DamageInfo info)
         {
-            if (!dead && health <= 0)
-            {
-                dead = true;
-                Death?.Invoke();
-            }
-            else if (dead && health > 0)
-            {
-                dead = false;
-            }
+            Death?.Invoke();
         }
     }
 }
