@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Arenas/Arena_01_Test_Grass.unity
     guid: 160eacad1689d71449c78ca0e0edccf7
   - enabled: 1
-    path: Assets/Scenes/Arenas/Arena_02_Test_Desert.unity
+    path: Assets/Scenes/Arenas/Arena_02_Test_Beach.unity
     guid: f238845ac48c34f41ab30b0385bc9e1d
+  - enabled: 1
+    path: Assets/Scenes/Arenas/Arena_03_Desert.unity
+    guid: 80d0eea1154cb60448bd88413dfda62f
   m_configObjects: {}
