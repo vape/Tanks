@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnDelay: 0
+  navMesh: {fileID: 5529691879665883204}
 --- !u!114 &4046789396750018286
 MonoBehaviour:
   m_ObjectHideFlags: 0

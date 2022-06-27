@@ -27,7 +27,7 @@ namespace Tanks.Game.AI
             var preset = config.Presets[index];
 
             var enemy = PrefabPool.Instantiate(preset.Prefab);
-            enemy.transform.position = pivot.transform.position;
+            enemy.SetPosition(pivot.transform.position);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Tanks.Game.AI
 {
@@ -9,6 +10,8 @@ namespace Tanks.Game.AI
 
         [SerializeField]
         private float despawnDelay;
+        [SerializeField]
+        private NavMeshAgent navMesh;
 
         private void OnEnable()
         {
@@ -18,6 +21,20 @@ namespace Tanks.Game.AI
         private void OnDisable()
         {
             World.Enemies.Unregister(this);
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            if (navMesh == null)
+            {
+                transform.position = position;
+            }
+            else
+            {
+                navMesh.enabled = false;
+                transform.position = position;
+                navMesh.enabled = true;
+            }
         }
 
         public void OnDeath()
