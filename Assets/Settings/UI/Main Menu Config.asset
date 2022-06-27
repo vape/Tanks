@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Main Menu Config
   m_EditorClassIdentifier: 
   ArenaPresets:
-  - DisplayName: Forest
-    SceneName: Arena_01_Test_Grass
+  - DisplayName: Grass
+    Data: {fileID: 11400000, guid: b83ce53b19308d848b391234bf2ddcbd, type: 2}
     Preview: {fileID: 21300000, guid: edbcaf55f5a975c489eb4bfd9fe9f227, type: 3}
   - DisplayName: Desert
-    SceneName: Arena_02_Test_Desert
+    Data: {fileID: 11400000, guid: 39da91d2b6e0082448b0c63a56688027, type: 2}
     Preview: {fileID: 21300000, guid: e7a079f22c5a92540bda44c2000ccc15, type: 3}

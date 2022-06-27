@@ -62,7 +62,7 @@ namespace Tanks
                 throw new Exception("Failed to find level manager");
             }
 
-            await levelManager.Load(manifest);
+            await levelManager.LoadAsync(manifest);
 
             await transition.HideAsync();
             await transition.DestroyAsync();

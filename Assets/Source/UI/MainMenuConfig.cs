@@ -1,4 +1,5 @@
 ﻿using System;
+using Tanks.Game.Arena;
 using UnityEngine;
 
 namespace Tanks.UI
@@ -10,7 +11,7 @@ namespace Tanks.UI
         public struct ArenaPreset
         {
             public string DisplayName;
-            public string SceneName;
+            public ArenaData Data;
             public Sprite Preview;
         }
 

@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameModeManager: {fileID: 965442960}
+  gameSettings: {fileID: 11400000, guid: dd07df3917e9695499713df7d60e52f5, type: 2}
 --- !u!1 &965442959
 GameObject:
   m_ObjectHideFlags: 0

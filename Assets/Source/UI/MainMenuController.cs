@@ -50,7 +50,7 @@ namespace Tanks.UI
         {
             foreach (var view in arenaViews)
             {
-                view.SetState(preset.SceneName == view.Preset.SceneName ? ArenaMenuVariant.StateType.Selected : ArenaMenuVariant.StateType.Normal);
+                view.SetState(preset.Data == view.Preset.Data ? ArenaMenuVariant.StateType.Selected : ArenaMenuVariant.StateType.Normal);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Tanks.UI
             {
                 var manifest = new LevelManifest()
                 {
-                    ArenaName = selectedArena.Preset.SceneName,
+                    Arena = selectedArena.Preset.Data,
                     GameMode = ScriptableObject.CreateInstance<EndlessGameModeConfiguration>()
                 };
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Tanks.Assets.Source.Game;
 using Tanks.Game.Mode;
-using Tanks.Game.Mode.Modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,10 +11,28 @@ namespace Tanks.Game.Level
     {
         [SerializeField]
         private GameModeManager gameModeManager;
+        [SerializeField]
+        private GameSettings gameSettings;
 
         private bool levelLoaded;
         private LevelManifest activeManifest;
-         
+
+        private void Awake()
+        {
+#if UNITY_EDITOR
+            // allow to start game by opening main and arena scenes in editor
+            for (int i = 0; i < gameSettings.Arenas.Length; ++i)
+            {
+                var scene = SceneManager.GetSceneByName(gameSettings.Arenas[i].SceneName);
+                if (scene.isLoaded)
+                {
+                    gameModeManager.Load(gameSettings.Modes[0]);
+                    break;
+                }
+            }
+#endif
+        }
+
         private void Update()
         {
             if (Keyboard.current[Key.Escape].wasPressedThisFrame)
@@ -23,7 +41,7 @@ namespace Tanks.Game.Level
             }
         }
 
-        public async Task Load(LevelManifest manifest)
+        public async Task LoadAsync(LevelManifest manifest)
         {
             if (levelLoaded)
             {
@@ -31,7 +49,7 @@ namespace Tanks.Game.Level
             }
 
             activeManifest = manifest;
-            await LoadArena(manifest.ArenaName);
+            await LoadArenaAsync(manifest.Arena.SceneName);
             gameModeManager.Load(manifest.GameMode);
             levelLoaded = true;
         }
@@ -43,13 +61,13 @@ namespace Tanks.Game.Level
                 return;
             }
 
-            await UnloadArena(activeManifest.ArenaName);
+            await UnloadArenaAsync(activeManifest.Arena.SceneName);
             gameModeManager.Unload();
             activeManifest = default;
             levelLoaded = false;
         }
 
-        private async Task UnloadArena(string name)
+        private async Task UnloadArenaAsync(string name)
         {
             SceneManager.SetActiveScene(gameObject.scene);
 
@@ -58,22 +76,13 @@ namespace Tanks.Game.Level
             await completionSource.Task;
         }
 
-        private async Task LoadArena(string name)
+        private async Task LoadArenaAsync(string name)
         {
             var completionSource = new TaskCompletionSource<bool>();
             SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive).completed += (_) => completionSource.SetResult(true);
             await completionSource.Task;
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
-        }
-
-        private LevelManifest GetManifest(int arena)
-        {
-            return new LevelManifest()
-            {
-                ArenaName = arena == 0 ? "Arena_01_Test_Grass" : "Arena_02_Test_Desert", 
-                GameMode = ScriptableObject.CreateInstance<EndlessGameModeConfiguration>()
-            };
         }
     }
 }
