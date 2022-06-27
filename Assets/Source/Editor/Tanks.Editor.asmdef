@@ -1,0 +1,18 @@
+{
+    "name": "Tanks.Editor",
+    "rootNamespace": "Tanks.Editor",
+    "references": [
+        "GUID:985895b989ecc8542a83673809370863"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

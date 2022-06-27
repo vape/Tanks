@@ -15,37 +15,15 @@ namespace Tanks.Game.Level
         private bool levelLoaded;
         private LevelManifest activeManifest;
          
-        private void Awake()
-        {
-            ScheduleLoad(GetManifest(0));
-        }
-
         private void Update()
         {
-#if DEBUG
-            if (Keyboard.current[Key.U].wasPressedThisFrame)
+            if (Keyboard.current[Key.Escape].wasPressedThisFrame)
             {
-                ScheduleUnload();
+                GameNavigation.LoadMenu();
             }
-
-            if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
-            {
-                ScheduleLoad(GetManifest(0));
-            }
-
-            if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
-            {
-                ScheduleLoad(GetManifest(1));
-            }
-#endif
         }
 
-        private void ScheduleLoad(LevelManifest manifest)
-        {
-            Load(manifest);
-        }
-
-        private async Task Load(LevelManifest manifest)
+        public async Task Load(LevelManifest manifest)
         {
             if (levelLoaded)
             {
@@ -58,12 +36,7 @@ namespace Tanks.Game.Level
             levelLoaded = true;
         }
 
-        private void ScheduleUnload()
-        {
-            Unload();
-        }
-
-        private async Task Unload()
+        public async Task Unload()
         {
             if (!levelLoaded)
             {
