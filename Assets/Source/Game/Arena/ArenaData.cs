@@ -2,7 +2,7 @@
 
 namespace Tanks.Game.Arena
 {
-    [CreateAssetMenu(fileName = "Arena Preset", menuName = "Tank/Arena/Preset")]
+    [CreateAssetMenu(fileName = "Arena Preset", menuName = "Tanks/Arena/Preset")]
     public class ArenaData : ScriptableObject
     {
         public string SceneName;
