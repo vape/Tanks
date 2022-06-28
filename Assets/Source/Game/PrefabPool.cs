@@ -66,7 +66,7 @@ namespace Tanks.Game
         {
             if (!instancePrefabReferences.TryGetValue(obj, out var prefab))
             {
-                Debug.LogError("Failed to find base prefab for given instance.");
+                Debug.LogWarning($"Failed to find base prefab for given instance, {obj.name} has been spawned outside prefab pool");
                 Destroy(obj);
                 return;
             }

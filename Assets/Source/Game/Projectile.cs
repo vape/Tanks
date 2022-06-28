@@ -5,7 +5,7 @@ namespace Tanks.Game
     public class Projectile : MonoBehaviour, IPoolSpawnedHandler
     {
         public bool IsDead
-        { get; private set; }    
+        { get; private set; }
 
         public void MarkDead()
         {

@@ -1,4 +1,5 @@
-﻿using Tanks.Game.Player;
+﻿using Tanks.Game.Arena;
+using Tanks.Game.Player;
 using UnityEngine;
 
 namespace Tanks.Game.Mode
@@ -6,16 +7,57 @@ namespace Tanks.Game.Mode
     public class GameModeManager : MonoBehaviour
     {
         [SerializeField]
-        private PlayerManager playerManager;
+        private PlayerCameraFollower cameraFollower;
 
         private GameMode mode;
+        private ArenaController arena;
 
-        public void Load(GameModeConfiguration config)
+        private void Awake()
         {
-            mode = config.CreateGameModeBase(CreateContext());
+            ArenaController.RegisterLoadingCallback(ArenaLoadedHandler);
         }
 
-        public void Unload()
+        private void OnDestroy()
+        {
+            ArenaController.UnregisterLoadingCallback(ArenaLoadedHandler);
+            ArenaController.UnregisterUnloadingCallback(ArenaUnloadedHandler);
+        }
+
+        private void ArenaLoadedHandler(ArenaController arena)
+        {
+            this.arena = arena;
+
+            if (mode != null)
+            {
+                mode.OnArenaLoaded(arena);
+            }
+
+            ArenaController.RegisterUnloadingCallback(ArenaUnloadedHandler);
+        }
+
+        private void ArenaUnloadedHandler(ArenaController arena)
+        {
+            this.arena = null;
+
+            if (mode != null)
+            {
+                mode.OnArenaUnloaded(arena);
+            }
+
+            ArenaController.RegisterLoadingCallback(ArenaLoadedHandler);
+        }
+
+        public void InitializeGameMode(GameModeConfiguration config)
+        {
+            mode = config.CreateGameModeBase(CreateContext());
+
+            if (arena != null)
+            {
+                mode.OnArenaLoaded(arena);
+            }
+        }
+
+        public void DestroyGameMode()
         {
             if (mode == null)
             {
@@ -37,7 +79,7 @@ namespace Tanks.Game.Mode
         {
             return new GameContext()
             {
-                PlayerManager = playerManager
+                PlayerCamera = cameraFollower
             };
         }
     }

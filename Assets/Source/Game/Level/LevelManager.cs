@@ -26,7 +26,14 @@ namespace Tanks.Game.Level
                 var scene = SceneManager.GetSceneByName(gameSettings.Arenas[i].SceneName);
                 if (scene.isLoaded)
                 {
-                    gameModeManager.Load(gameSettings.Modes[0]);
+                    activeManifest = new LevelManifest()
+                    {
+                        Arena = gameSettings.Arenas[i],
+                        GameMode = gameSettings.Modes[0]
+                    };
+
+                    gameModeManager.InitializeGameMode(activeManifest.GameMode);
+                    levelLoaded = true;
                     break;
                 }
             }
@@ -50,7 +57,7 @@ namespace Tanks.Game.Level
 
             activeManifest = manifest;
             await LoadArenaAsync(manifest.Arena.SceneName);
-            gameModeManager.Load(manifest.GameMode);
+            gameModeManager.InitializeGameMode(manifest.GameMode);
             levelLoaded = true;
         }
 
@@ -62,7 +69,7 @@ namespace Tanks.Game.Level
             }
 
             await UnloadArenaAsync(activeManifest.Arena.SceneName);
-            gameModeManager.Unload();
+            gameModeManager.DestroyGameMode();
             activeManifest = default;
             levelLoaded = false;
         }

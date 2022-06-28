@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Endless Mode
   m_EditorClassIdentifier: 
   MaxEnemies: 10
+  Enemies: {fileID: 11400000, guid: bc6b34e532be8034fa055045992e53fe, type: 2}

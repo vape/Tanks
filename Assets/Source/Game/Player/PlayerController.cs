@@ -8,23 +8,28 @@ namespace Tanks.Game.Player
 
         public event DeathDelegate Death;
 
-        public float MeleeRange => meleeRange;
-
         public bool Dead
         { get; private set; }
 
-        [SerializeField]
-        private float meleeRange;
-
-        public void OnDeath()
+        private void OnEnable()
         {
-            Dead = true;
-            Death?.Invoke();
+            World.Player.Register(this);
+        }
+
+        private void OnDisable()
+        {
+            World.Player.Unregister(this);
         }
 
         private void OnDestroy()
         {
             Death = null;
+        }
+
+        public void OnDeath()
+        {
+            Dead = true;
+            Death?.Invoke();
         }
     }
 }

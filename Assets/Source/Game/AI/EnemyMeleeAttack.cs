@@ -38,6 +38,7 @@ namespace Tanks.Game.AI
         private AttackPhase phase;
         private bool atMeleeRange;
         private GameObject target;
+        private bool dead;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -69,7 +70,7 @@ namespace Tanks.Game.AI
             switch (phase)
             {
                 case AttackPhase.Idle:
-                    if (atMeleeRange)
+                    if (!dead && atMeleeRange)
                     {
                         SelectRandomAttack();
                         SetPhase(AttackPhase.Charging);
@@ -115,6 +116,12 @@ namespace Tanks.Game.AI
                     Attack?.Invoke(ActiveAttack.AttackTime);
                     break;
             }
+        }
+
+        public void OnDeath()
+        {
+            dead = true;
+            SetPhase(AttackPhase.Idle);
         }
 
         private void ApplyDamage()

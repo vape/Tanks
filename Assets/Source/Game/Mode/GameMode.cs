@@ -1,9 +1,22 @@
 ﻿using System;
+using Tanks.Game.Arena;
 
 namespace Tanks.Game.Mode
 {
     public abstract class GameMode
     {
+        protected ArenaController arena;
+
+        public virtual void OnArenaLoaded(ArenaController arena)
+        {
+            this.arena = arena;
+        }
+
+        public virtual void OnArenaUnloaded(ArenaController arena)
+        {
+            this.arena = null;
+        }
+
         public virtual void Update(float delta)
         { }
 

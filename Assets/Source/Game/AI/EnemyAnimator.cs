@@ -14,12 +14,14 @@ namespace Tanks.Game.AI
         [SerializeField]
         private Animator animator;
         [SerializeField]
-        private NavMeshAgent navMeshAgent;
+        private EnemyMovement movement;
 
         private void Update()
         {
-            var localSpeed = transform.InverseTransformVector(navMeshAgent.velocity);
-            SetSpeed(MovementAxis.ZAxis, localSpeed.z);
+            if (movement != null)
+            {
+                SetSpeed(MovementAxis.ZAxis, transform.InverseTransformVector(movement.Velocity).z);
+            }
         }
 
         public void OnAttack()

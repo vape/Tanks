@@ -41,14 +41,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5529691879665883205}
   - component: {fileID: 5529691879665883201}
+  - component: {fileID: 550279559123797219}
   - component: {fileID: 5529691879665883204}
+  - component: {fileID: 5529691879665883213}
   - component: {fileID: 5529691879665883203}
   - component: {fileID: 5529691879665883200}
   - component: {fileID: 5529691879665883202}
-  - component: {fileID: 5529691879665883213}
   - component: {fileID: 4046789396750018286}
   - component: {fileID: 3906644476082209851}
-  - component: {fileID: 550279559123797219}
   m_Layer: 0
   m_Name: Turtle Enemy
   m_TagString: Untagged
@@ -89,6 +89,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &550279559123797219
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529691879665883225}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &5529691879665883204
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -111,6 +124,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &5529691879665883213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529691879665883225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de22be1def063a84898be68a27fd7232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathDelay: 1.33
+  movement: {fileID: 5529691879665883203}
 --- !u!114 &5529691879665883203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,26 +222,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5529691879665883203}
+        m_TargetAssemblyTypeName: Tanks.Game.AI.EnemyPlayerFollower, Tanks
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5529691879665883200}
+        m_TargetAssemblyTypeName: Tanks.Game.AI.EnemyMeleeAttack, Tanks
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HealthChanged:
     m_PersistentCalls:
       m_Calls: []
   health: 50
   healthCapacity: 50
   protection: 0.4
---- !u!114 &5529691879665883213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529691879665883225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de22be1def063a84898be68a27fd7232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  despawnDelay: 0
-  navMesh: {fileID: 5529691879665883204}
 --- !u!114 &4046789396750018286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7221888160097139364}
-  navMeshAgent: {fileID: 5529691879665883204}
+  movement: {fileID: 5529691879665883203}
 --- !u!114 &3906644476082209851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,19 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionReference: {fileID: 826333049161373562}
---- !u!135 &550279559123797219
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529691879665883225}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &7307957471159090446
 PrefabInstance:
   m_ObjectHideFlags: 0

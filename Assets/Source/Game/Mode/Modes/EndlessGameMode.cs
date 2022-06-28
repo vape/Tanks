@@ -1,7 +1,12 @@
-﻿namespace Tanks.Game.Mode.Modes
+﻿using System.Collections.Generic;
+using Tanks.Game.AI;
+
+namespace Tanks.Game.Mode.Modes
 {
     public class EndlessGameMode : GameMode<EndlessGameModeConfiguration>
     {
+        private HashSet<EnemyController> enemiesToDespawn = new HashSet<EnemyController>();
+
         public EndlessGameMode(GameContext context, EndlessGameModeConfiguration configuration)
             : base(context, configuration)
         { }
@@ -10,22 +15,42 @@
         {
             base.Update(delta);
 
-            if (context.PlayerManager.Player == null && context.PlayerManager.CanSpawn())
+            if (context.PlayerCamera.Player == null && World.Player.Controller != null)
             {
-                context.PlayerManager.Spawn("default");
+                context.PlayerCamera.Player = World.Player.Controller.gameObject;
             }
 
-            if (context.PlayerManager.Player != null)
+            if (arena != null)
             {
-                if (World.Enemies.Spawners.Count > 0 && World.Enemies.Enemies.Count < config.MaxEnemies)
+                foreach (var enemy in World.Enemies.Enemies)
                 {
-                    var spawner = UnityEngine.Random.Range(0, World.Enemies.Spawners.Count);
-                    World.Enemies.Spawners[spawner].Spawn();
+                    if (enemy.Dead)
+                    {
+                        enemiesToDespawn.Add(enemy);
+                    }
                 }
 
-                if (context.PlayerManager.Player.Dead)
+                if (enemiesToDespawn.Count > 0)
                 {
-                    context.PlayerManager.Respawn();
+                    foreach (var enemy in enemiesToDespawn)
+                    {
+                        arena.EnemySpawner.Despawn(enemy);
+                    }
+
+                    enemiesToDespawn.Clear();
+                }
+
+                if (World.Enemies.Enemies.Count < config.MaxEnemies && arena.EnemySpawner.Spots.Count > 0)
+                {
+                    var enemy = config.Enemies.Presets[UnityEngine.Random.Range(0, config.Enemies.Presets.Length)].Name;
+                    var spot = arena.EnemySpawner.Spots[UnityEngine.Random.Range(0, arena.EnemySpawner.Spots.Count)];
+
+                    arena.EnemySpawner.Spawn(enemy, spot);
+                }
+
+                if (World.Player.Controller == null || World.Player.Controller.Dead)
+                {
+                    arena.PlayerSpawner.Respawn();
                 }
             }
         }

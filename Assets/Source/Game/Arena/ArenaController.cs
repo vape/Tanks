@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tanks.Game.Player;
 using UnityEngine;
 
 namespace Tanks.Game.Arena
@@ -41,10 +40,13 @@ namespace Tanks.Game.Arena
             unloadingCallbacks.Remove(callback);
         }
 
-        public PlayerSpawner Spawner => spawner;
+        public ArenaEnemySpawner EnemySpawner => enemySpawner;
+        public ArenaPlayerSpawner PlayerSpawner => playerSpawner;
 
         [SerializeField]
-        private PlayerSpawner spawner;
+        private ArenaEnemySpawner enemySpawner;
+        [SerializeField]
+        private ArenaPlayerSpawner playerSpawner;
 
         private void Awake()
         {

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Tanks.Game.AI
 {
@@ -8,10 +7,19 @@ namespace Tanks.Game.AI
     {
         public int Id => GetInstanceID();
 
+        public delegate void DeathDelegate();
+
+        public event DeathDelegate Death;
+
+        public bool Dead
+        { get; private set; }
+
         [SerializeField]
-        private float despawnDelay;
+        private float deathDelay;
         [SerializeField]
-        private NavMeshAgent navMesh;
+        private EnemyMovement movement;
+
+        private bool pendingDead;
 
         private void OnEnable()
         {
@@ -25,27 +33,34 @@ namespace Tanks.Game.AI
 
         public void SetPosition(Vector3 position)
         {
-            if (navMesh == null)
+            if (movement == null)
             {
                 transform.position = position;
             }
             else
             {
-                navMesh.enabled = false;
-                transform.position = position;
-                navMesh.enabled = true;
+                movement.SetPositionImmediately(position);
             }
         }
 
         public void OnDeath()
         {
+            if (pendingDead || Dead)
+            {
+                return;
+            }
+
+            pendingDead = true;
             StartCoroutine(DespawnRoutine());
         }
 
         private IEnumerator DespawnRoutine()
         {
-            yield return new WaitForSeconds(despawnDelay);
-            Destroy(gameObject);
+            yield return new WaitForSeconds(deathDelay);
+
+            Dead = true;
+            Death?.Invoke();
+            pendingDead = false;
         }
     }
 }

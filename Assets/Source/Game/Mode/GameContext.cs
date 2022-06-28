@@ -4,6 +4,6 @@ namespace Tanks.Game.Mode
 {
     public struct GameContext
     {
-        public PlayerManager PlayerManager;
+        public PlayerCameraFollower PlayerCamera;
     }
 }

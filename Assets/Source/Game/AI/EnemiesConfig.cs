@@ -1,21 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tanks.Game.Player
+namespace Tanks.Game.AI
 {
-    [CreateAssetMenu(fileName = "Player Manager Configuration", menuName = "Tanks/Player Manager Configuration")]
-    public class PlayerManagerConfiguration : ScriptableObject
+    [CreateAssetMenu(fileName = "Enemies Config", menuName = "Tanks/Enemies/Enemies Config")]
+    public class EnemiesConfig : ScriptableObject
     {
         [Serializable]
-        public struct PlayerPreset
+        public struct Preset
         {
             public string Name;
-            public PlayerController Prefab;
+            public EnemyController Prefab;
         }
 
-        public PlayerPreset[] Presets;
+        public Preset[] Presets;
 
-        public bool TryFindPreset(string name, out PlayerPreset preset)
+        public bool TryFind(string name, out Preset preset)
         {
             for (int i = 0; i < Presets.Length; ++i)
             {

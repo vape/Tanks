@@ -1,21 +1,21 @@
-﻿using Tanks.Game.Player;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 namespace Tanks.Game.AI
 {
-    public class EnemyPlayerFollower : MonoBehaviour
+    public class EnemyPlayerFollower : EnemyMovement
     {
         public const string DamageAreaTag = "DamageArea";
+        public override Vector3 Velocity => navMeshAgent.velocity;
 
         [SerializeField]
         private NavMeshAgent navMeshAgent;
 
         private void Update()
         {
-            if (PlayerManager.PlayerInstance != null)
+            if (World.Player.Controller != null)
             {
-                navMeshAgent.destination = PlayerManager.PlayerInstance.transform.position;
+                navMeshAgent.destination = World.Player.Controller.transform.position;
             }
         }
 
@@ -33,6 +33,18 @@ namespace Tanks.Game.AI
             {
                 navMeshAgent.stoppingDistance = 0;
             }
+        }
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
+        }
+
+        public override void SetPositionImmediately(Vector3 position)
+        {
+            navMeshAgent.enabled = false;
+            transform.position = position;
+            navMeshAgent.enabled = true;
         }
     }
 }
