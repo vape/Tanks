@@ -1,9 +1,10 @@
+using Tanks.Game.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Tanks.Game.Tank
 {
-    public class TankController : MonoBehaviour
+    public class TankController : PlayerMovement
     {
         private static readonly Vector3 gravity = new Vector3(0, -9.81f, 0);
 
@@ -40,6 +41,13 @@ namespace Tanks.Game.Tank
             
             transform.rotation *= rotation;
             character.Move(move);
+        }
+
+        public override void SetPositionImmediately(Vector3 position)
+        {
+            character.enabled = false;
+            transform.position = position;
+            character.enabled = true;
         }
     }
 }

@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77d1f6bf43788746b48d9786c68161b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeRange: 0
+  movement: {fileID: 3410567479362423316}
 --- !u!114 &223110113427153172
 MonoBehaviour:
   m_ObjectHideFlags: 0

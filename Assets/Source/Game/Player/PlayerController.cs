@@ -11,6 +11,9 @@ namespace Tanks.Game.Player
         public bool Dead
         { get; private set; }
 
+        [SerializeField]
+        private PlayerMovement movement;
+
         private void OnEnable()
         {
             World.Player.Register(this);
@@ -24,6 +27,18 @@ namespace Tanks.Game.Player
         private void OnDestroy()
         {
             Death = null;
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            if (movement != null)
+            {
+                movement.SetPositionImmediately(position);
+            }
+            else
+            {
+                transform.position = position;
+            }
         }
 
         public void OnDeath()

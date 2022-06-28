@@ -18,7 +18,8 @@ namespace Tanks.Game.Arena
                 throw new Exception("Player already exist!");
             }
 
-            GameObject.Instantiate(prefab);
+            var player = GameObject.Instantiate(prefab);
+            player.SetPosition(origin.transform.position);
         }
 
         public void Despawn()
