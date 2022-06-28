@@ -70,7 +70,10 @@ namespace Tanks.Game.Tank
         {
             if (isFiring)
             {
-                guns[activeGun].TryFire();
+                if (guns[activeGun].TryFire() && animator != null)
+                {
+                    animator.SetTrigger("shot");
+                }
             }
         }
     }
